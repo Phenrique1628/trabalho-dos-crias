@@ -1,0 +1,142 @@
+#include <stdio.h>
+void mostrarProdutos();
+void ordenarBubble();
+void ordenarInsertion();
+void buscaBinaria();
+int codigo[5] = {2, 4, 6, 8, 10};
+int quantidades[5] = {10, 20, 30, 40, 50};
+int precos[5] = {25, 12, 47, 10, 50};
+
+int main() {
+    int escolha;
+    int codigo, quantidade;
+
+    printf("======MENU======");
+    printf("\n1- Ordenar com Bubble Sort");
+    printf("\n2- Ordenar com Insertion Sort");
+    printf("\n3- Ordenar com Selection Sort");
+    printf("\n4- Buscar um produto com Sequencial");
+    printf("\n5- Buscar um produto com Busca Binaria");
+    printf("\n6- Mostrar produtos (codigo, quantidade e preco)");
+    printf("\n7- Encerrar\n");
+    printf("\nDigitar:");
+    scanf("%d", &escolha);
+
+    if (escolha == 1){
+        ordenarBubble();
+    }
+    else if (escolha == 2){
+        ordenarInsertion();
+    } if (escolha == 5){
+        buscaBinaria();
+    }
+    else if (escolha == 6){
+        mostrarProdutos();
+    }
+}
+
+
+
+void mostrarProdutos(){
+    int i;
+    printf("\n====CODIGO====\n");
+    for (i = 0; i < 5; i++){
+        printf("%d ", codigo[i]);
+    }
+
+    printf("\n====QUANTIDADE====\n");
+    for (i = 0; i < 5; i++){
+        printf("%d ", quantidades[i]);
+    }
+
+    printf("\n====PRECOS====\n");
+    for (i = 0; i < 5; i++){
+        printf("%d ", precos[i]);
+    }
+}
+
+
+
+void ordenarBubble(){
+    int i, j, aux;
+    printf("====PRECOS ORDENADOS DO MENOR PARA O MAIOR(Bubble Sort)====\n");
+    for (i = 0; i < 4; i++)
+    {
+        for (j = 0; j < 4 - i; j++)
+        {
+
+            if (precos[j] > precos[j + 1])
+            {
+                aux = precos[j];
+                precos[j] = precos[j + 1];
+                precos[j + 1] = aux;
+            }
+        }
+    }
+    for (i = 0; i < 5; i++)
+    {
+        printf("%d ", precos[i]);
+    }
+
+    printf("\n====PRECOS ORDENADOS DO MAIOR PARA O MENOR(Bubble Sort)====\n");
+    for (i = 0; i < 4; i++){
+        for (j = 0; j < 4 - i; j++){
+
+            if (precos[j] < precos[j + 1])
+            {
+                aux = precos[j];
+                precos[j] = precos[j + 1];
+                precos[j + 1] = aux;
+            }
+        }
+    }
+
+    for (i = 0; i < 5; i++){
+        printf("%d ", precos[i]);
+    }
+}
+
+void ordenarInsertion(){
+    int i, j, chave;
+ printf("\n====PRECOS ORDENADOS(Insertion Sort)====\n");
+
+      for(i = 1; i < 5; i++){
+        chave = precos[i];
+        j = i - 1;
+        while(j >= 0 && precos[j] > chave)
+        {
+            precos[j + 1] = precos[j];
+            j--;
+        }
+        precos[j + 1] = chave;
+    }
+
+    for(i = 0; i < 5; i++){
+        printf("%d ", precos[i]);
+    }
+}
+
+void buscaBinaria(){
+  int inicio;
+    int fim;
+    int meio;
+    int buscaCodigo;
+    printf("Digite o indice inicial e final do vetor(respectivamente): ");
+    scanf("%d %d", &inicio, &fim);
+    printf("Digite o codigo a buscar: ");
+    scanf("%d", &buscaCodigo);
+    while(inicio <= fim)
+    {
+        meio = (inicio + fim) / 2;
+        if(codigo[meio] == buscaCodigo)
+        {
+            printf("Codigo do produto encontrado na posicao %d\n", meio);
+            return;
+        }
+        else if(buscaCodigo > codigo[meio])
+            inicio = meio + 1;
+        else
+            fim = meio - 1;
+    }
+    printf("Elemento nao encontrado.\n");
+}
