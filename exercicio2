@@ -3,6 +3,7 @@ void mostrarProdutos();
 void ordenarBubble();
 void ordenarInsertion();
 void buscaBinaria();
+void encerrarPrograma();
 int codigo[5] = {2, 4, 6, 8, 10};
 int quantidades[5] = {10, 20, 30, 40, 50};
 int precos[5] = {25, 12, 47, 10, 50};
@@ -32,7 +33,9 @@ int main() {
     }
     else if (escolha == 6){
         mostrarProdutos();
-    }
+    } else if(escolha == 7){
+        encerrarPrograma();
+   } 
 }
 
 
@@ -59,17 +62,20 @@ void mostrarProdutos(){
 
 void ordenarBubble(){
     int i, j, aux;
+    int cont = 0;
+    int comp = 0;
     printf("====PRECOS ORDENADOS DO MENOR PARA O MAIOR(Bubble Sort)====\n");
     for (i = 0; i < 4; i++)
     {
         for (j = 0; j < 4 - i; j++)
         {
-
+             comp++;
             if (precos[j] > precos[j + 1])
             {
                 aux = precos[j];
                 precos[j] = precos[j + 1];
                 precos[j + 1] = aux;
+                cont++;
             }
         }
     }
@@ -94,6 +100,9 @@ void ordenarBubble(){
     for (i = 0; i < 5; i++){
         printf("%d ", precos[i]);
     }
+    
+    printf("\nO total de trocas foram: %d", cont);
+    printf("\nO total de comparacoes foi: %d", comp);
 }
 
 void ordenarInsertion(){
@@ -139,4 +148,8 @@ void buscaBinaria(){
             fim = meio - 1;
     }
     printf("Elemento nao encontrado.\n");
+}
+
+void encerrarPrograma(){
+    return;
 }
